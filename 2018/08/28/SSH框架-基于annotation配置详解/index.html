@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="基于annotation的ssh框架整合配置需要的配置文件 Strtsu2框架：src/strtus.xmlSpring框架：src/applicationContext.xml关于日志：log4j.properties关于数据库连接：db.properties  web.xml配置(同xml)domain下bean的注解配置 @Entity：定义实体类 @Table：定义表 @Id：主键 @Ge">
+  <meta name="description" content="摘要本文简单的记录了基于annotation进行ssh框架整合配置； 需要的配置文件 Strtsu2框架：src/strtus.xmlSpring框架：src/applicationContext.xml关于日志：log4j.properties关于数据库连接：db.properties">
 <meta name="keywords" content="ssh,注解">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SSH框架-基于annotation的ssh框架整合配置">
 <meta property="og:url" content="http://yoursite.com/2018/08/28/SSH框架-基于annotation配置详解/index.html">
 <meta property="og:site_name" content="糖葫芦的小栈">
-<meta property="og:description" content="基于annotation的ssh框架整合配置需要的配置文件 Strtsu2框架：src/strtus.xmlSpring框架：src/applicationContext.xml关于日志：log4j.properties关于数据库连接：db.properties  web.xml配置(同xml)domain下bean的注解配置 @Entity：定义实体类 @Table：定义表 @Id：主键 @Ge">
+<meta property="og:description" content="摘要本文简单的记录了基于annotation进行ssh框架整合配置； 需要的配置文件 Strtsu2框架：src/strtus.xmlSpring框架：src/applicationContext.xml关于日志：log4j.properties关于数据库连接：db.properties">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-30T07:52:55.723Z">
+<meta property="og:updated_time" content="2018-08-30T14:59:01.561Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SSH框架-基于annotation的ssh框架整合配置">
-<meta name="twitter:description" content="基于annotation的ssh框架整合配置需要的配置文件 Strtsu2框架：src/strtus.xmlSpring框架：src/applicationContext.xml关于日志：log4j.properties关于数据库连接：db.properties  web.xml配置(同xml)domain下bean的注解配置 @Entity：定义实体类 @Table：定义表 @Id：主键 @Ge">
+<meta name="twitter:description" content="摘要本文简单的记录了基于annotation进行ssh框架整合配置； 需要的配置文件 Strtsu2框架：src/strtus.xmlSpring框架：src/applicationContext.xml关于日志：log4j.properties关于数据库连接：db.properties">
 
 
 
@@ -360,7 +360,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-30 15:52:55" itemprop="dateModified" datetime="2018-08-30T15:52:55+08:00">2018-08-30</time>
+                <time title="修改时间：2018-08-30 22:59:01" itemprop="dateModified" datetime="2018-08-30T22:59:01+08:00">2018-08-30</time>
               
             
           </span>
@@ -411,10 +411,12 @@
       
 
       
-        <h2 id="基于annotation的ssh框架整合配置"><a href="#基于annotation的ssh框架整合配置" class="headerlink" title="基于annotation的ssh框架整合配置"></a>基于annotation的ssh框架整合配置</h2><h3 id="需要的配置文件"><a href="#需要的配置文件" class="headerlink" title="需要的配置文件"></a>需要的配置文件</h3><blockquote>
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文简单的记录了基于annotation进行ssh框架整合配置；</p>
+<h3 id="需要的配置文件"><a href="#需要的配置文件" class="headerlink" title="需要的配置文件"></a>需要的配置文件</h3><blockquote>
 <p>Strtsu2框架：src/strtus.xml<br>Spring框架：src/applicationContext.xml<br>关于日志：log4j.properties<br>关于数据库连接：db.properties</p>
 </blockquote>
-<h3 id="web-xml配置-同xml"><a href="#web-xml配置-同xml" class="headerlink" title="web.xml配置(同xml)"></a>web.xml配置(同xml)</h3><h3 id="domain下bean的注解配置"><a href="#domain下bean的注解配置" class="headerlink" title="domain下bean的注解配置"></a>domain下bean的注解配置</h3><ul>
+<a id="more"></a> 
+<h3 id="web-xml配置-同基于xml的配置"><a href="#web-xml配置-同基于xml的配置" class="headerlink" title="web.xml配置(同基于xml的配置)"></a>web.xml配置(同基于xml的配置)</h3><h3 id="domain下bean的注解配置"><a href="#domain下bean的注解配置" class="headerlink" title="domain下bean的注解配置"></a>domain下bean的注解配置</h3><ul>
 <li>@Entity：定义实体类</li>
 <li>@Table：定义表</li>
 <li>@Id：主键</li>
@@ -449,7 +451,7 @@
 <p>1、类上基本配置<br>    @Controller<br>    @Scope(“prototype”)<br>    @Namespace(“/“)<br>    @ParentPackage(“struts-default”)</p>
 <p>2、service注入<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="meta">@Qualifier</span>(<span class="string">"userService"</span>)</span><br><span class="line"><span class="keyword">private</span> IUserService userService;</span><br></pre></td></tr></table></figure></p>
 <p>3、配置action<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Action</span>(value=<span class="string">"user_add"</span>,results=&#123;<span class="meta">@Result</span>(name=<span class="string">"success"</span>,location=<span class="string">"/success.jsp"</span>)&#125;)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	userService.add(user);</span><br><span class="line">	<span class="keyword">return</span> SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="延迟加载的问题"><a href="#延迟加载的问题" class="headerlink" title="延迟加载的问题"></a>延迟加载的问题</h3><p>在web.xml中配置openSessionInViewFilter<br>==注意:openSessionInViewFilter一定要在Struts2 Filter前配置==</p>
+<h3 id="延迟加载的问题"><a href="#延迟加载的问题" class="headerlink" title="延迟加载的问题"></a>延迟加载的问题</h3><p>在web.xml中配置openSessionInViewFilter<br>注意:openSessionInViewFilter一定要在Struts2 Filter前配置</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- openSessionInViewFilter --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>openSessionInView<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.orm.hibernate5.support.OpenSessionInViewFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>openSessionInView<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
       
     </div>
@@ -485,8 +487,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/28/SSH框架-基于xml配置详解/" rel="next" title="基于xml的ssh框架整合配置">
-                <i class="fa fa-chevron-left"></i> 基于xml的ssh框架整合配置
+              <a href="/2018/08/28/SSH框架-基于xml配置详解/" rel="next" title="SSH框架-基于xml的ssh框架整合配置">
+                <i class="fa fa-chevron-left"></i> SSH框架-基于xml的ssh框架整合配置
               </a>
             
           </div>
@@ -651,7 +653,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于annotation的ssh框架整合配置"><span class="nav-number">1.</span> <span class="nav-text">基于annotation的ssh框架整合配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需要的配置文件"><span class="nav-number">1.1.</span> <span class="nav-text">需要的配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web-xml配置-同xml"><span class="nav-number">1.2.</span> <span class="nav-text">web.xml配置(同xml)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#domain下bean的注解配置"><span class="nav-number">1.3.</span> <span class="nav-text">domain下bean的注解配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整合hibernate"><span class="nav-number">1.4.</span> <span class="nav-text">整合hibernate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dao注解配置"><span class="nav-number">1.5.</span> <span class="nav-text">dao注解配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#service注解配置"><span class="nav-number">1.6.</span> <span class="nav-text">service注解配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#action注解配置"><span class="nav-number">1.7.</span> <span class="nav-text">action注解配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#延迟加载的问题"><span class="nav-number">1.8.</span> <span class="nav-text">延迟加载的问题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需要的配置文件"><span class="nav-number">1.1.</span> <span class="nav-text">需要的配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web-xml配置-同基于xml的配置"><span class="nav-number">1.2.</span> <span class="nav-text">web.xml配置(同基于xml的配置)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#domain下bean的注解配置"><span class="nav-number">1.3.</span> <span class="nav-text">domain下bean的注解配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整合hibernate"><span class="nav-number">1.4.</span> <span class="nav-text">整合hibernate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dao注解配置"><span class="nav-number">1.5.</span> <span class="nav-text">dao注解配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#service注解配置"><span class="nav-number">1.6.</span> <span class="nav-text">service注解配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#action注解配置"><span class="nav-number">1.7.</span> <span class="nav-text">action注解配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#延迟加载的问题"><span class="nav-number">1.8.</span> <span class="nav-text">延迟加载的问题</span></a></li></ol></li></ol></div>
             
 
           </div>
