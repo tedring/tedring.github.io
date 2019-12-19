@@ -32,8 +32,6 @@ open /usr/local/bin/jmeter
 
 * 下载地址：https://mirrors.tuna.tsinghua.edu.cn/apache/jmeter/binaries
 
-![5QGLby.jpg](https://s1.ax2x.com/2018/12/12/5QGLby.jpg)
-
 * 安装：直接将下载好的zip压缩包进行解压即可。
 * 启动：进入bin目录，找到jmeter.bat文件，双机打开即可启动。
 
@@ -41,52 +39,70 @@ open /usr/local/bin/jmeter
 ### 使用
 #### 1、修改主题和语言
 
-默认的主题是黑色风格的主题并且语言是英语，这样不太方便使用，所以需要修改下主题和中文语言。
+默认的语言是英语，这样不太方便使用，所以需要修改下中文语言。
 
- ![5QGTJK.png](https://s1.ax2x.com/2018/12/12/5QGTJK.png)
+通过【Options】-> 【Choose Language】变更简体中文
 
- ![5QGz5n.png](https://s1.ax2x.com/2018/12/12/5QGz5n.png)
+![update language](/images/jmeter/update language.png)
 
-![5QGVOE.png](https://s1.ax2x.com/2018/12/12/5QGVOE.png)
-
-主题修改完成。
-
-接下来设置语言为简体中文。
-
-![5QG0g2.png](https://s1.ax2x.com/2018/12/12/5QG0g2.png)
-
-语言修改完成。 ![5QGdcz.png](https://s1.ax2x.com/2018/12/12/5QGdcz.png)
+中文简体语言修改完成。 
 
 #### 2、创建首页的测试用例
 
-第一步：保存测试用例 ![5QGOZH.png](https://s1.ax2x.com/2018/12/12/5QGOZH.png)
+第一步：保存测试用例
+
+![save jmx](/images/jmeter/save.png)
 
 第二步：添加线程组，使用线程模拟用户的并发
 
- ![5QGub9.png](https://s1.ax2x.com/2018/12/12/5QGub9.png)
+![create thread](/images/jmeter/create thread.png)
 
- ![5QG4UA.png](https://s1.ax2x.com/2018/12/12/5QG4UA.png)
+![set thread](/images/jmeter/set thread.png)
 
 1000个线程，每个线程循环10次，也就是tomcat会接收到10000个请求。
 
-第三步：添加http请求
+第三步：添加http请求，并设置相关端口、请求路径及参数
 
- ![5QGJnO.png](https://s1.ax2x.com/2018/12/12/5QGJnO.png)
+![add req](/images/jmeter/add req.png)
 
- ![5QGhQq.png](https://s1.ax2x.com/2018/12/12/5QGhQq.png)
+![set req](/images/jmeter/set req.png)
 
-第四步：添加请求监控
+第四步：添加查看结果树，与用表格查看结果
 
- ![5QGvce.png](https://s1.ax2x.com/2018/12/12/5QGvce.png)
+![add result](/images/jmeter/add result.png)
 
- ![5QGyid.png](https://s1.ax2x.com/2018/12/12/5QGyid.png)
+![check by excel](/images/jmeter/check by excel.png)
 
 #### 3、启动、进行测试 
 
- ![5QGaXR.png](https://s1.ax2x.com/2018/12/12/5QGaXR.png)
+注意：启动时终端提示不要使用图形化界面执行测试计划，需要在终端使用命令执行
 
-#### 4、聚合报告
+> Don't use GUI mode for load testing !, only for Test creation and Test debugging.
+>
+> For load testing, use CLI Mode (was NON GUI):
+>
+>   jmeter -n -t [jmx file] -l [results file] -e -o [Path to web report folder]
+>
+> & increase Java Heap to meet your test requirements:
+>
+>   Modify current env variable HEAP="-Xms1g -Xmx1g -XX:MaxMetaspaceSize=256m" in the jmeter batch file
+>
+> Check : https://jmeter.apache.org/usermanual/best-practices.html
 
-在聚合报告中，重点看吞吐量。
+执行命令：
 
- ![5QGcZr.png](https://s1.ax2x.com/2018/12/12/5QGcZr.png)
+```sh
+jmeter -n -t SendMessage.jmx -l jmeter/result.txt -e -o jmeter/
+
+# SendMessage.jmx 测试文件路径
+# jmeter/result.txt 测试结果文件路径
+# jmeter/ web报告保存路径
+```
+
+命令执行结束后在指定路径会出现对应的报告，打开index.html可查看报告
+
+![report1](/images/jmeter/report1.png)
+
+#### 4、查看web报告
+
+![report2](/images/jmeter/report2.png)
