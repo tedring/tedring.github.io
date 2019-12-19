@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Linux 常用操作防火墙开启端口centos6 开启相关端口   /sbin/iptables -I INPUT -p tcp –dport 80 -j ACCEPT   /sbin/iptables -I INPUT -p tcp –dport 3306 -j ACCEPT">
+<meta name="keywords" content="Java,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用操作">
+<meta property="og:url" content="http://yoursite.com/2019/12/19/Linux常用操作/index.html">
+<meta property="og:site_name" content="糖葫芦的小栈">
+<meta property="og:description" content="Linux 常用操作防火墙开启端口centos6 开启相关端口   /sbin/iptables -I INPUT -p tcp –dport 80 -j ACCEPT   /sbin/iptables -I INPUT -p tcp –dport 3306 -j ACCEPT">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-19T09:32:25.614Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux常用操作">
+<meta name="twitter:description" content="Linux 常用操作防火墙开启端口centos6 开启相关端口   /sbin/iptables -I INPUT -p tcp –dport 80 -j ACCEPT   /sbin/iptables -I INPUT -p tcp –dport 3306 -j ACCEPT">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/19/Linux常用操作/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Linux常用操作 | 糖葫芦的小栈</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">糖葫芦的小栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">好奇心...</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/19/Linux常用操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="糖葫芦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="糖葫芦的小栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux常用操作
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-19 15:50:00 / 修改时间：17:32:25" itemprop="dateCreated datePublished" datetime="2019-12-19T15:50:00+08:00">2019-12-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Linux-常用操作"><a href="#Linux-常用操作" class="headerlink" title="Linux 常用操作"></a>Linux 常用操作</h2><h3 id="防火墙开启端口"><a href="#防火墙开启端口" class="headerlink" title="防火墙开启端口"></a>防火墙开启端口</h3><h4 id="centos6"><a href="#centos6" class="headerlink" title="centos6"></a>centos6</h4><ul>
+<li>开启相关端口</li>
+</ul>
+<blockquote>
+<p>/sbin/iptables -I INPUT -p tcp –dport 80 -j ACCEPT</p>
+</blockquote>
+<blockquote>
+<p>/sbin/iptables -I INPUT -p tcp –dport 3306 -j ACCEPT</p>
+</blockquote>
+<a id="more"></a> 
+<ul>
+<li>保存配置</li>
+</ul>
+<blockquote>
+<p>/etc/rc.d/init.d/iptables save</p>
+</blockquote>
+<ul>
+<li>重启服务</li>
+</ul>
+<blockquote>
+<p>/etc/rc.d/init.d/iptables restart</p>
+</blockquote>
+<h4 id="centos7"><a href="#centos7" class="headerlink" title="centos7"></a>centos7</h4><ul>
+<li>放开防火墙8888端口</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --add-port=9090/tcp</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重启防火墙</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+<h3 id="卸载mysql"><a href="#卸载mysql" class="headerlink" title="卸载mysql"></a>卸载mysql</h3><ul>
+<li>源码安装</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">find / -name mysql</span><br><span class="line">rm -rf 上边查找到的路径，多个路径用空格隔开</span><br><span class="line">#或者下边一条命令即可</span><br><span class="line">find / -name mysql|xargs rm -rf</span><br></pre></td></tr></table></figure>
+<ul>
+<li>rpm安装</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 查看</span><br><span class="line">rpm -qa | grep mysql</span><br><span class="line">// 删除</span><br><span class="line">rpm -e mysql　　// 普通删除模式</span><br><span class="line">rpm -e --nodeps mysql　　// 强力删除模式，如果使用上面命令删除时，提示有依赖的其它文件，则用该命令可以对其进行强力删除</span><br></pre></td></tr></table></figure>
+<h3 id="scp免密传输文件"><a href="#scp免密传输文件" class="headerlink" title="scp免密传输文件"></a>scp免密传输文件</h3><ul>
+<li>生成配对密钥</li>
+</ul>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">执行命令：ssh-keygen -t rsa</span><br><span class="line">过程：一路enter不要输入密码</span><br><span class="line">/root/.ssh/id_rsa already exists.</span><br><span class="line">Overwrite (y/n)? y</span><br><span class="line">Enter passphrase (empty for no passphrase): </span><br><span class="line">Enter same passphrase again: </span><br><span class="line">Your identification has been saved in /root/.ssh/id_rsa.</span><br><span class="line">Your public key has been saved in /root/.ssh/id_rsa.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">SHA256:Izal7G5mpRxGiJ+mMHVZO4keVZuCrqGrHB8z2Qz7E8A root@localhost.localdomain</span><br><span class="line">The key&apos;s randomart image is:</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将<code>/root/.ssh</code>文件夹下的<code>id_rsa.pub</code>上传到目标服务器的相同路径并重命名为<code>authorized_keys</code></li>
+</ul>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp id_rsa.pub root@47.100.168.214:/root/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+<h3 id="搜索文件"><a href="#搜索文件" class="headerlink" title="搜索文件"></a>搜索文件</h3><ul>
+<li>find命令</li>
+</ul>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find / -name &apos;findname&apos;</span><br><span class="line">搜索根目录下所有名为findname的文件</span><br></pre></td></tr></table></figure>
+<ul>
+<li>locate命令</li>
+</ul>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">locate &apos;findname&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="Linux查看日志"><a href="#Linux查看日志" class="headerlink" title="Linux查看日志"></a>Linux查看日志</h3><ul>
+<li>查看日志： </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">常用，显示最后3000行：</span><br><span class="line">cat api.log | tail -n 3000</span><br><span class="line"></span><br><span class="line">linux 如何显示一个文件的某几行(中间几行)</span><br><span class="line"></span><br><span class="line">从第3000行开始，显示1000行。即显示3000~3999行</span><br><span class="line">cat filename | tail -n +3000 | head -n 1000</span><br><span class="line"></span><br><span class="line">显示1000行到3000行</span><br><span class="line">cat filename| head -n 3000 | tail -n +1000</span><br><span class="line"></span><br><span class="line">*注意两种方法的顺序</span><br><span class="line">分解：</span><br><span class="line">tail -n 1000：显示最后1000行</span><br><span class="line">tail -n +1000：从1000行开始显示，显示1000行以后的</span><br><span class="line">head -n 1000：显示前面1000行</span><br><span class="line"></span><br><span class="line">用sed命令</span><br><span class="line">sed -n &apos;5,10p&apos; filename 这样你就可以只查看文件的第5行到第10行。</span><br><span class="line"></span><br><span class="line">例：cat mylog.log | tail -n 1000 #输出mylog.log 文件最后一千行</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查找指定信息</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cat log.txt | grep &apos;ERROR&apos; -A 5</span><br><span class="line"></span><br><span class="line">意思是，在log.txt文件中，查找ERROR字符，并显示ERROR所在行的之后5行</span><br><span class="line"></span><br><span class="line">cat log.txt | grep &apos;ERROR&apos; -B 5  之前5行</span><br><span class="line"></span><br><span class="line">cat log.txt | grep &apos;ERROR&apos; -C 5 前后5行</span><br><span class="line"></span><br><span class="line">cat log.txt | grep -v &apos;ERROR&apos; 排除ERROR所在的行</span><br></pre></td></tr></table></figure>
+<h3 id="linux公钥免密码登录"><a href="#linux公钥免密码登录" class="headerlink" title="linux公钥免密码登录"></a>linux公钥免密码登录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa获得id_rsa、id_rsa.pub</span><br><span class="line">将.pub文件中公钥复制到服务器的/root/.ssh文件夹中的authorized_keys文件中</span><br></pre></td></tr></table></figure>
+<h2 id="nginx常用操作"><a href="#nginx常用操作" class="headerlink" title="nginx常用操作"></a>nginx常用操作</h2><blockquote>
+<p>待完善</p>
+</blockquote>
+<h2 id="别名启动-sh脚本"><a href="#别名启动-sh脚本" class="headerlink" title="别名启动.sh脚本"></a>别名启动.sh脚本</h2><ul>
+<li>1、~路径下新增文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch .bash_profile</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2、编辑</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi .bash_profile</span><br></pre></td></tr></table></figure>
+<ul>
+<li>3、写入</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># ssh管理脚本</span><br><span class="line">alias so=/Users/tang/source/so/so.sh</span><br></pre></td></tr></table></figure>
+<h2 id="scp命令"><a href="#scp命令" class="headerlink" title="scp命令"></a>scp命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">从服务器下载整个文件夹到指定服务器文件夹</span><br><span class="line">scp -r root@47.101.184.179:/home/mins-test/cloud/qrcode Downloads/</span><br></pre></td></tr></table></figure>
+<h2 id="查看最近登录的几个用户"><a href="#查看最近登录的几个用户" class="headerlink" title="查看最近登录的几个用户"></a>查看最近登录的几个用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">last -n 100|awk &apos;&#123;print $1&quot;\t&quot;$3&#125;&apos;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/22/SSH框架-annotation配置/" rel="next" title="SSH框架-基于annotation的ssh框架整合配置">
+                <i class="fa fa-chevron-left"></i> SSH框架-基于annotation的ssh框架整合配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head_icon.jpg"
+                alt="糖葫芦" />
+            
+              <p class="site-author-name" itemprop="name">糖葫芦</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tedring" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:tangdongruix@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-常用操作"><span class="nav-number">1.</span> <span class="nav-text">Linux 常用操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#防火墙开启端口"><span class="nav-number">1.1.</span> <span class="nav-text">防火墙开启端口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#centos6"><span class="nav-number">1.1.1.</span> <span class="nav-text">centos6</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#centos7"><span class="nav-number">1.1.2.</span> <span class="nav-text">centos7</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卸载mysql"><span class="nav-number">1.2.</span> <span class="nav-text">卸载mysql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scp免密传输文件"><span class="nav-number">1.3.</span> <span class="nav-text">scp免密传输文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索文件"><span class="nav-number">1.4.</span> <span class="nav-text">搜索文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux查看日志"><span class="nav-number">1.5.</span> <span class="nav-text">Linux查看日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux公钥免密码登录"><span class="nav-number">1.6.</span> <span class="nav-text">linux公钥免密码登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx常用操作"><span class="nav-number">2.</span> <span class="nav-text">nginx常用操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#别名启动-sh脚本"><span class="nav-number">3.</span> <span class="nav-text">别名启动.sh脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scp命令"><span class="nav-number">4.</span> <span class="nav-text">scp命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看最近登录的几个用户"><span class="nav-number">5.</span> <span class="nav-text">查看最近登录的几个用户</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">糖葫芦</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
