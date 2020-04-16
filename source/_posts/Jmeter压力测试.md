@@ -51,27 +51,27 @@ open /usr/local/bin/jmeter
 
 第一步：保存测试用例
 
-![save jmx](/images/jmeter/save.png)
+![save jmx](../images/jmeter/save.png)
 
 第二步：添加线程组，使用线程模拟用户的并发
 
-![create thread](/images/jmeter/create thread.png)
+![create thread](../images/jmeter/create thread.png)
 
-![set thread](/images/jmeter/set thread.png)
+![set thread](../images/jmeter/set thread.png)
 
 1000个线程，每个线程循环10次，也就是tomcat会接收到10000个请求。
 
 第三步：添加http请求，并设置相关端口、请求路径及参数
 
-![add req](/images/jmeter/add req.png)
+![add req](../images/jmeter/add req.png)
 
-![set req](/images/jmeter/set req.png)
+![set req](../images/jmeter/set req.png)
 
 第四步：添加查看结果树，与用表格查看结果
 
-![add result](/images/jmeter/add result.png)
+![add result](../images/jmeter/add result.png)
 
-![check by excel](/images/jmeter/check by excel.png)
+![check by excel](../images/jmeter/check by excel.png)
 
 #### 3、启动、进行测试 
 
@@ -101,8 +101,8 @@ jmeter -n -t SendMessage.jmx -l jmeter/result.txt -e -o jmeter/
 
 命令执行结束后在指定路径会出现对应的报告，打开index.html可查看报告
 
-![report1](/images/jmeter/report1.png)
+![report1](../images/jmeter/report1.png)
 
 #### 4、查看web报告
 
-![report2](/images/jmeter/report2.png)
+![report2](../images/jmeter/report2.png)
